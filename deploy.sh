@@ -21,7 +21,7 @@ else
     docker run --volumes-from ovpn-data --rm -it kylemanna/openvpn:2.4 ovpn_initpki
 
     echo 'Starting OpenVPN server'
-    docker run --name simple-openvpn --volumes-from ovpn-data -d --rm -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn:2.4
+    docker run --name simple-openvpn --volumes-from ovpn-data -d --rm --restart=always -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn:2.4
     echo 'Setup complete'
 
     echo ''
