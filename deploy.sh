@@ -34,5 +34,5 @@ else
     echo '  #> docker run --volumes-from ovpn-data --rm -it kylemanna/openvpn:2.4 easyrsa build-client-full $CLIENTNAME nopass'
     echo '  #> docker run --volumes-from ovpn-data --rm kylemanna/openvpn:2.4 ovpn_getclient $CLIENTNAME > $CLIENTNAME.ovpn'
     echo '-------------------------------------------------------------------------------------------------------------------'
-EOF
+
 fi
