@@ -16,9 +16,10 @@ else
 
     echo 'Generating OpenVPN config file'
     docker run --volumes-from ovpn-data --rm kylemanna/openvpn:2.4 ovpn_genconfig -u udp://$FQDN:1194 -c
+    docker run --volumes-from ovpn-data --rm kylemanna/openvpn:2.4 sed -i '$ a\push "redirect-gateway def1 bypass-dhcp"' /etc/openvpn/openvpn.conf
 
     echo 'Initialising primary key'
-    docker run --volumes-from ovpn-data --rm -it kylemanna/openvpn:2.4 ovpn_initpki
+    docker run --volumes-from ovpn-data --rm -it kylemanna/openvpn:2.4 ovpn_initpki nopass
 
     echo 'Starting OpenVPN server'
     docker run --name simple-openvpn --volumes-from ovpn-data -d --rm -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn:2.4
